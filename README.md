@@ -67,4 +67,4 @@ AutoController.scala
  - Клонировать исходный код при помощи git clone https://github.com/Cygnus21/auto.git
  - Перейти в каталог auto
  - Запустить при помощи команды sbt run
- - Для проверки REST API можно использовать Postman (или аналогичные ресурсы)
+ - Для проверки REST API можно использовать curl, Postman (или аналогичные ресурсы)
