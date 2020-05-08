@@ -18,7 +18,7 @@ JSON должен быть следующего вида:
 "number":"s755os",
 "make":"Shevrale",
 "color":"yellow",
-"year":2000,
+"year":"2000",
 "vin": "LYJUI54389877323"
 }
 ```

@@ -8,9 +8,9 @@ import slick.jdbc.PostgresProfile.api._
 
 import scala.concurrent.{ExecutionContext, Future}
 
-case class Auto(id: Long, vin: String, number: String, make: String, color: String, year: Int)
+case class Auto(id: Long, vin: String, number: String, make: String, color: String, year: String)
 
-case class AutoFormData(vin: String, number: String, make: String, color: String, year: Int)
+case class AutoFormData(vin: String, number: String, make: String, color: String, year: String)
 
 object AutoForm {
   val form = Form(
@@ -19,7 +19,7 @@ object AutoForm {
       "number" -> nonEmptyText,
       "make" -> nonEmptyText,
       "color" -> nonEmptyText,
-      "year" -> number
+      "year" -> nonEmptyText
     ) (AutoFormData.apply)(AutoFormData.unapply)
   )
 }
@@ -30,7 +30,7 @@ class AutoTableDef(tag: Tag) extends Table[Auto](tag, "auto") {
   def number = column[String]("number")
   def make = column[String]("make")
   def color = column[String]("color")
-  def year = column[Int]("year")
+  def year = column[String]("year")
 
   override def * = (id, vin, number, make, color, year) <> (Auto.tupled, Auto.unapply)
 }
@@ -87,7 +87,7 @@ class AutoList @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
       case "color" => dbConfig.db.run(autoList.filter(_.color === value).result)
       case "make" => dbConfig.db.run(autoList.filter(_.make === value).result)
       case "number" => dbConfig.db.run(autoList.filter(_.number === value).result)
-      case "year" => dbConfig.db.run(autoList.filter(_.year === value.toInt).result)
+      case "year" => dbConfig.db.run(autoList.filter(_.year === value).result)
     }
   }
 
